@@ -27,4 +27,10 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+private:
+
+	UPROPERTY(EditAnywhere)
+	FName AcceptableActorTag;
+
+	AActor* GetAcceptableActor() const;
 };

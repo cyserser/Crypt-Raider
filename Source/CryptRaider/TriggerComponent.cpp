@@ -27,12 +27,28 @@ void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 {
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+    AActor* Actor = GetAcceptableActor();
+    
+    if(Actor != nullptr)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Unlocking"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("LOCKING"));
+    }
+}
+
+AActor* UTriggerComponent::GetAcceptableActor() const
+{
     TArray<AActor*> Actors;
     GetOverlappingActors(Actors);
-
-    if(Actors.Num() > 0)
+    for(AActor* Actor : Actors)
     {
-        FString ActorName = Actors[0]->GetActorNameOrLabel();
-        UE_LOG(LogTemp, Display, TEXT("Name is: %s"), *ActorName);
+        if(Actor->ActorHasTag(AcceptableActorTag))
+        {
+            return Actor;
+        }
     }
+    return nullptr;
 }
