@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
+#include "Mover.h"
+#include "GameFramework/Actor.h"
 #include "TriggerComponent.generated.h"
 
 /**
@@ -27,10 +29,16 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
+	void SetMover(UMover* Mover);
+
+
 private:
 
 	UPROPERTY(EditAnywhere)
 	FName AcceptableActorTag;
+
+	UMover* Mover;
 
 	AActor* GetAcceptableActor() const;
 };
