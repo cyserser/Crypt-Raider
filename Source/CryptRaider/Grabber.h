@@ -11,7 +11,7 @@
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CRYPTRAIDER_API UGrabber : public USceneComponent
-{
+	{
 	GENERATED_BODY()
 
 public:	
